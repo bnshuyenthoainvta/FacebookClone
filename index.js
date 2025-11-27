@@ -6,6 +6,7 @@ require('dotenv').config();
 const userRouter = require('./route/user');
 const postRouter = require('./route/post');
 const commentRouter = require('./route/comment');
+const likeRouter = require('./route/like');
 const verifyToken = require('./middleware/verifyToken');
 
 const PORT = 3500;
@@ -34,6 +35,8 @@ app.use(verifyToken);
 app.use('/post', postRouter);
 //Comment Router
 app.use('/comment', commentRouter);
+//Like Router
+app.use('/like', likeRouter);
 
 
 app.listen(PORT, ()=> {
