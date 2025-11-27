@@ -33,7 +33,7 @@ app.use(verifyToken);
 //Post Router
 app.use('/post', postRouter);
 //Comment Router
-app.use('comment', commentRouter);
+app.use('/comment', commentRouter);
 
 
 app.listen(PORT, ()=> {
