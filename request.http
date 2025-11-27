@@ -20,11 +20,11 @@ Content-Type: application/json
 ###
 //Tạo bài viết, nhớ lấy lại accessToken và dán lại
 POST http://localhost:3500/post/create
-Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1MjQ1NCwiZXhwIjoxNzY0MzM4ODU0fQ.TwfapMYo-NPohci2QpFHAtZq3OzrDfGFHfx5nH4wXro
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjgwOSwiZXhwIjoxNzY0MzQzMjA5fQ.B0CctV4A2z83dlhIJjqVcQD0pUWuYYXBVxjOg3KMUYY
 Content-Type: application/json
 
 {
-    "content": "Post đầu tiên của tôi"
+    "content": "Post thứ hai của tôi"
 }
 
 ###
@@ -34,7 +34,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsid
 
 ###
 //Tạo comment
-POST http://localhost:3500/comment/69285b2e9778ea695477a9a7
+POST http://localhost:3500/comment/6925bfac67737a769818f5b5
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 Content-Type: application/json
 {
