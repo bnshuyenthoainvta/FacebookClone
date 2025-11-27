@@ -1,0 +1,42 @@
+//Đăng kí tài khoản
+POST http://localhost:3500/user/register
+Content-Type: application/json
+
+{
+    "username": "anh1",
+    "password": "anh"
+}
+
+###
+//Đăng nhập tài khoản
+POST http://localhost:3500/user/auth
+Content-Type: application/json
+
+{
+    "username": "anh1",
+    "password": "anh"
+}
+
+###
+//Tạo bài viết, nhớ lấy lại accessToken và dán lại
+POST http://localhost:3500/post/create
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1MjQ1NCwiZXhwIjoxNzY0MzM4ODU0fQ.TwfapMYo-NPohci2QpFHAtZq3OzrDfGFHfx5nH4wXro
+Content-Type: application/json
+
+{
+    "content": "Post đầu tiên của tôi"
+}
+
+###
+//Lấy bài viết theo id, nhớ lấy id User và dán lại
+GET http://localhost:3500/post/6925bfac67737a769818f5b5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NTI0MSwiZXhwIjoxNzY0MzQxNjQxfQ.AuDB8ludc7PWqAskgvgd_DjtlLMa7PCpnu6fXzEAQF4
+
+###
+//Tạo comment
+POST http://localhost:3500/comment/69285b2e9778ea695477a9a7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
+Content-Type: application/json
+{
+    "content": "Comment đầu tiên của tôi"
+}
