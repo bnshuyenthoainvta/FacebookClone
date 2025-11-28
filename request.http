@@ -28,6 +28,21 @@ Content-Type: application/json
 }
 
 ###
+//Sửa bài viết, lấy id của bài viết và dán lại
+PUT http://localhost:3500/post/id
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjgwOSwiZXhwIjoxNzY0MzQzMjA5fQ.B0CctV4A2z83dlhIJjqVcQD0pUWuYYXBVxjOg3KMUYY
+Content-Type: application/json
+
+{
+    "content": "Post sau khi đã chỉnh sửa của tôi"
+}
+
+###
+//Xóa bài viết, lấy id của bài viết và dán lại
+DELETE http://localhost:3500/post/id
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjgwOSwiZXhwIjoxNzY0MzQzMjA5fQ.B0CctV4A2z83dlhIJjqVcQD0pUWuYYXBVxjOg3KMUYY
+
+###
 //Lấy bài viết theo id, nhớ lấy id User và dán lại
 GET http://localhost:3500/post/6925bfac67737a769818f5b5
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NTI0MSwiZXhwIjoxNzY0MzQxNjQxfQ.AuDB8ludc7PWqAskgvgd_DjtlLMa7PCpnu6fXzEAQF4
@@ -49,12 +64,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsid
 
 ###
 //Like post, nhớ lấy id của post và gán lại
-PUT http://localhost:3500/like/69286cb50d0f22077f8b8c10
+PUT http://localhost:3500/like/69285b2e9778ea695477a9a7
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 
 ###
 //Lấy số lượng like của post, nhớ lấy id của post và gán lại
-GET http://localhost:3500/like/69286cb50d0f22077f8b8c10
+GET http://localhost:3500/like/69285b2e9778ea695477a9a7
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 
 
