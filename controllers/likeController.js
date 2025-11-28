@@ -7,11 +7,21 @@ const likePost = async(req,res) => {
         if(!postId || !userId) return res.status(400).json({success: false, message: 'Error'});
 
         const foundPost = await Post.findById(postId).exec();
-        if(!foundPost) res.status(400).json({success: false, message: 'Error'});
+        if(!foundPost) return res.status(400).json({success: false, message: 'Error'});
+
+        const foundLike = foundPost.likes.includes(userId);
+        if(foundLike) {
+            await Post.findByIdAndUpdate(
+                postId,
+                {$pull: {likes: userId}},
+                {new: true}
+            )
+            return res.status(200).json({success: true, message: 'you unlike post successfully'});
+        };
 
         await Post.findByIdAndUpdate(
             postId,
-            {$push: {likes: userId}},
+            {$push: {likes: {userId}}},
             {new: true}
         );
 
