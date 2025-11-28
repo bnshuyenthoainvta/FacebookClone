@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 //Database connected
 const databaseConnected = () => {
     try {
-        mongoose.connect(`mongodb+srv://anhht191257:Hoangtuananh95@cluster0.tkfs99z.mongodb.net/`);
+        mongoose.connect(process.env.MONGODB_URI);
         console.log('mongoose is connected');
     } catch(e) {
         console.log(e);

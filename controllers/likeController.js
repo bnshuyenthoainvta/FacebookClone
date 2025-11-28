@@ -15,13 +15,13 @@ const likePost = async(req,res) => {
                 postId,
                 {$pull: {likes: userId}},
                 {new: true}
-            )
+            );
             return res.status(200).json({success: true, message: 'you unlike post successfully'});
         };
 
         await Post.findByIdAndUpdate(
             postId,
-            {$push: {likes: {userId}}},
+            {$push: {likes: userId}},
             {new: true}
         );
 
