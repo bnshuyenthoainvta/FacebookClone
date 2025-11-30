@@ -3,18 +3,22 @@ const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+const PORT = 3500;
+const app = express();
+
+//Router
 const userRouter = require('./route/user');
 const postRouter = require('./route/post');
 const commentRouter = require('./route/comment');
 const likeRouter = require('./route/like');
-const verifyToken = require('./middleware/verifyToken');
+const shareRouter = require('./route/share');
 
-const PORT = 3500;
-
-const app = express();
-
+//Special and important middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Middleware verify
+const verifyToken = require('./middleware/verifyToken');
 
 //Database connected
 const databaseConnected = () => {
@@ -37,8 +41,10 @@ app.use('/post', postRouter);
 app.use('/comment', commentRouter);
 //Like Router
 app.use('/like', likeRouter);
+//Share Router
+app.use('/share', shareRouter);
 
-
+//Start app
 app.listen(PORT, ()=> {
     console.log(`Sever is running on port ${PORT}`)
-})
+});

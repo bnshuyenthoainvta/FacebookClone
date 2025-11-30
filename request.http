@@ -17,6 +17,11 @@ Content-Type: application/json
     "password": "anh"
 }
 
+
+
+
+
+
 ###
 //Tạo bài viết, nhớ lấy lại accessToken và dán lại
 POST http://localhost:3500/post/create
@@ -29,7 +34,7 @@ Content-Type: application/json
 
 ###
 //Sửa bài viết, lấy id của bài viết và dán lại
-PUT http://localhost:3500/post/69286cb50d0f22077f8b8c10
+PUT http://localhost:3500/post/postId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjgwOSwiZXhwIjoxNzY0MzQzMjA5fQ.B0CctV4A2z83dlhIJjqVcQD0pUWuYYXBVxjOg3KMUYY
 Content-Type: application/json
 
@@ -39,17 +44,24 @@ Content-Type: application/json
 
 ###
 //Xóa bài viết, lấy id của bài viết và dán lại
-DELETE http://localhost:3500/post/69286cb50d0f22077f8b8c10
+DELETE http://localhost:3500/post/postId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDM0MDY3MSwiZXhwIjoxNzY0NDI3MDcxfQ.lHDDM2D59iu583A3Lm0_mOATicpmdsfozKtm-WaNEiM
 
 ###
 //Lấy bài viết theo id, nhớ lấy id User và dán lại
-GET http://localhost:3500/post/6925bfac67737a769818f5b5
+GET http://localhost:3500/post/userId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NTI0MSwiZXhwIjoxNzY0MzQxNjQxfQ.AuDB8ludc7PWqAskgvgd_DjtlLMa7PCpnu6fXzEAQF4
+
+
+
+
+
+
+
 
 ###
 //Tạo comment, nhớ lấy id của post và dán lại
-POST http://localhost:3500/comment/6925bfac67737a769818f5b5
+POST http://localhost:3500/comment/postId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 Content-Type: application/json
 
@@ -58,21 +70,51 @@ Content-Type: application/json
 }
 
 ###
-//Xóa comment, nhớ lấy id của comment và dán lại
-DELETE http://localhost:3500/comment/6925bfac67737a769818f5b5
+//Sửa comment, nhớ lấy id của comment và dán lại
+PUT http://localhost:3500/comment/commentId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
+Content-Type: application/json
+
+{
+    "content": "Comment đầu tiên của tôi sau khi đã sửa"
+}
+
+###
+//Xóa comment, nhớ lấy id của comment và dán lại
+DELETE http://localhost:3500/comment/commentId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
+
+
+
+
+
 
 ###
 //Like post, nhớ lấy id của post và gán lại
-PUT http://localhost:3500/like/69285b2e9778ea695477a9a7
+PUT http://localhost:3500/like/postId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 
 ###
 //Lấy số lượng like của post, nhớ lấy id của post và gán lại
-GET http://localhost:3500/like/69285b2e9778ea695477a9a7
+GET http://localhost:3500/like/postId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 
 
 
 
+
+###
+//Share bài viết, nhớ lấy id của post và gán lại
+GET http://localhost:3500/share/postId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
+
+###
+//Unshare bài viết, nhớ lấy id của post và gán lại
+DELETE http://localhost:3500/share/postId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
+
+###
+//Lấy tất cả bài viết mà tài khoản đã share, nhớ lấy id của user và gán lại
+GET http://localhost:3500/share/userId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDI1NjYzOSwiZXhwIjoxNzY0MzQzMDM5fQ.4TRrXqZffeIfxTfcHZcli3290n8appjeUDxQhv3o8oM
 

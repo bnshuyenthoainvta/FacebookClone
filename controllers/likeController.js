@@ -1,6 +1,6 @@
 const Post = require('../models/Post');
 
-const likePost = async(req,res) => {
+const likeAndUnlike = async(req,res) => {
     try {
         const postId = req.params.id;
         const userId = req.user.userID;
@@ -32,7 +32,7 @@ const likePost = async(req,res) => {
     }
 }
 
-const getLike = async(req,res) => {
+const getAllLike = async(req,res) => {
     try {
         const postId = req.params.id;
         const userId = req.user.userID;
@@ -49,4 +49,4 @@ const getLike = async(req,res) => {
     }
 }
 
-module.exports = { likePost, getLike };
+module.exports = { likeAndUnlike, getAllLike };
