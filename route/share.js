@@ -6,6 +6,6 @@ router.get('/:id', shareController.sharePost);
 
 router.delete('/:id', shareController.unsharePost);
 
-router.get('/:id', shareController.getAllShare);
+router.get('/', shareController.getAllShare);
 
 module.exports = router;

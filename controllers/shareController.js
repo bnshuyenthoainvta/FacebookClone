@@ -66,9 +66,8 @@ const unsharePost = async(req,res) => {
 
 const getAllShare = async (req, res) => {
     try {
-        const shareId = req.params.id;
         const userId = req.user.userID;
-        if(!shareId || !userId) return res.status(400).json({success:false, message:'Bad request'});
+        if(!userId) return res.status(400).json({success:false, message:'Bad request'});
         const foundUser = await User.findById(userId).populate(
             {    
                 path: 'shares.post',
@@ -87,7 +86,7 @@ const getAllShare = async (req, res) => {
 
         if(!foundUser) return res.status(400).json({success:false, message:'User not exist'});
 
-        const listSharePost = foundUser.shares.map(share => share.post);
+        const listSharePost = foundUser.shares;
         return res.status(200).json({success: true, share: listSharePost});
     } catch (e) {
         console.log(e);
