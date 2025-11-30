@@ -86,7 +86,18 @@ const getAllPost = async (req,res) => {
     const userId = req.user.userID;
     if(!userId) return res.status(401).json({success: false, message: 'Error'});
     try {
-        const listPost = await Post.find({user: userId});
+        const foundUser = await User.findById(userId).populate({
+            path: 'posts',
+            populate: [
+                {path: 'user', select: 'username'},
+                {
+                    path: 'comments',
+                    populate: { path: 'user', select: 'username' }
+                }
+            ]
+        }).exec();
+        if(!foundUser) return res.status(404).json({success: false, message: 'User not found'});
+        const listPost = foundUser.posts;
         if(listPost.length == 0) return res.status(404).json({success: false, message: 'Have no post'});
 
         return res.status(200).json({success: true, post: listPost});

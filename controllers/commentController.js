@@ -10,16 +10,16 @@ const createComment = async (req,res) => {
         const userId = req.user.userID;
         if(!content || !postId || !userId) return res.status(400).json({success:false, message:'Bad request'});
 
-        const user = await User.findById(userId).exec();
-        const post = await Post.findById(postId).exec();
-        if(!user || !post) return res.status(400).json({success:false, message:'Bad request'});
+        const foundUser = await User.findById(userId).exec();
+        const foundPost = await Post.findById(postId).exec();
+        if(!foundUser || !foundPost) return res.status(400).json({success:false, message:'Bad request'});
 
         const commentId = new mongoose.Types.ObjectId();
         const result = await Comment.create({
             _id: commentId,
             content,
-            user: user._id,
-            post: post._id
+            user: foundUser._id,
+            post: foundPost._id
         });
 
         await Post.findByIdAndUpdate(
