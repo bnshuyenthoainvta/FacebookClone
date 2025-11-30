@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 
 const createPost = async (req,res) => {
     const content = req.body.content;
@@ -7,10 +8,20 @@ const createPost = async (req,res) => {
     if(!content || !userId) return res.status(400).json({success: false, message: 'Content required'});
 
     try {
+        const user = await User.findById(userId).exec();
+        if(!user) return res.status(404).json({success: false, message: 'User not found'});
+
         const result = await Post.create({
             content,
-            userId
+            user: user._id
         });
+
+        await User.findByIdAndUpdate(
+            userId,
+            {$push: {posts: result._id}},
+            {new: true}
+        );
+
         return res.status(201).json({success: true, message: `Post created successfully`, post: result});
     } catch (e) {
         console.log(e);
@@ -27,7 +38,7 @@ const updatePost = async(req,res) => {
 
     try {
         const foundPost = await Post.findById(postId).exec();
-        if(!foundPost || foundPost.userId.toString() !== userId) return res.status(404).json({success: false, message: 'Update post get Error'});
+        if(!foundPost || foundPost.user.toString() !== userId) return res.status(404).json({success: false, message: 'Update post get Error'});
 
         const result = await Post.findByIdAndUpdate(
             postId,
@@ -55,9 +66,15 @@ const deletePost = async(req,res) => {
 
     try {
         const foundPost = await Post.findById(postId).exec();
-        if(!foundPost || foundPost.userId.toString() !== userId) return res.status(404).json({success: false, message: 'Delete post get error'});
+        if(!foundPost || foundPost.user.toString() !== userId) return res.status(404).json({success: false, message: 'Delete post get error'});
 
+        await User.findByIdAndUpdate(
+            userId,
+            {$pull: {posts: foundPost._id}},
+            {new: true}
+        );
         await Post.findByIdAndDelete(postId);
+
         return res.status(200).json({success: true, message: 'Post  deleted successfully'});
     } catch (e) {
         console.log(e);
@@ -69,7 +86,7 @@ const getAllPost = async (req,res) => {
     const userId = req.user.userID;
     if(!userId) return res.status(401).json({success: false, message: 'Error'});
     try {
-        const listPost = await Post.find({userId});
+        const listPost = await Post.find({user: userId});
         if(listPost.length == 0) return res.status(404).json({success: false, message: 'Have no post'});
 
         return res.status(200).json({success: true, post: listPost});

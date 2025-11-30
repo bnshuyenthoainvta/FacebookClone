@@ -6,7 +6,7 @@ const postSchema = new schema({
         type: String,
         required: true
     },
-    userId: {
+    user: {
         type: schema.Types.ObjectId,
         ref: 'Users',
         required: true
@@ -15,6 +15,21 @@ const postSchema = new schema({
         type: schema.Types.ObjectId,
         ref: 'Users'
     }],
+    shares: [
+        {
+            _id: 
+            {
+                type: schema.Types.ObjectId,
+                required: true
+            },
+            user: 
+            {
+                type: schema.Types.ObjectId,
+                ref: 'Users',
+                required: true
+            }
+        }
+    ],
     createdAt: {
         type: Date,
         default: Date.now
@@ -22,10 +37,12 @@ const postSchema = new schema({
     updatedAt: {
         type: Date
     },
-    comments: [{
-        type: schema.Types.ObjectId,
-        ref: 'Comments'
-    }]
+    comments: [
+        {
+            type: schema.Types.ObjectId,
+            ref: 'Comments'
+        }
+    ],
 });
 
 module.exports = mongoose.model('Posts', postSchema);

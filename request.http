@@ -40,7 +40,7 @@ Content-Type: application/json
 ###
 //Xóa bài viết, lấy id của bài viết và dán lại
 DELETE http://localhost:3500/post/69286cb50d0f22077f8b8c10
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgiLCJ1c2VySUQiOiI2OTI1YmY5ZjY3NzM3YTc2OTgxOGY1YjIifSwiaWF0IjoxNzY0MzQwNTIxLCJleHAiOjE3NjQ0MjY5MjF9.K_iIMpLBXG2C3uxPDgUbZAa4Bu7MEx7x2XF50k7-yCo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsidXNlcm5hbWUiOiJhbmgxIiwidXNlcklEIjoiNjkyNWJmYWM2NzczN2E3Njk4MThmNWI1In0sImlhdCI6MTc2NDM0MDY3MSwiZXhwIjoxNzY0NDI3MDcxfQ.lHDDM2D59iu583A3Lm0_mOATicpmdsfozKtm-WaNEiM
 
 ###
 //Lấy bài viết theo id, nhớ lấy id User và dán lại
