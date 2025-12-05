@@ -1,22 +1,18 @@
 const User = require('../models/User');
-const argon2 = require('argon2');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const registerController = async (req,res) => {
     try {
-        const {username, password} = req.body;
-        if(!username || !password) return res.status(401).json({success: false, message: `username and password are required`});
+        const {email, password} = req.body;
+        if(!email || !password) return res.status(401).json({success: false, message: `email and password are required`});
 
-        const duplicateUser = await User.findOne({username}).exec();
-        if(duplicateUser) return res.status(409).json({success: false, message: `username existed`});
+        const duplicateUser = await User.findOne({email}).exec();
+        if(duplicateUser) return res.status(409).json({success: false, message: `email existed`});
 
-        const hashPassword = await argon2.hash(password);
-        const result = await User.create({
-            username,
-            password: hashPassword
-        });
+        const result = await User.create({email,password});
         console.log(result);
-        return res.status(200).json({success: true, message: `User ${username} created`});
+        return res.status(200).json({success: true, message: `User ${email} created`});
     } catch (e) {
         console.log(e);
         return res.status(500).json({success: false, message: 'Server internal error'});
@@ -25,19 +21,18 @@ const registerController = async (req,res) => {
 
 const authController = async(req,res) => {
     try {
-        const {username, password} = req.body;
-        if(!username || !password) return res.status(401).json({success: false, message: `username and password are required`});
+        const {email, password} = req.body;
+        if(!email || !password) return res.status(401).json({success: false, message: `email and password are required`});
 
-        const foundUser = await User.findOne({username}).exec();
-        if(!foundUser) return res.status(401).json({success: false, message: `username ${username} do not existed`});
+        const foundUser = await User.findOne({email}).exec();
+        if(!foundUser) return res.status(401).json({success: false, message: `User ${email} do not existed`});
 
-        const verifyUser = await argon2.verify(foundUser.password, password);
-        if(!verifyUser) return res.status(401).json({success: false, message: `username and password are wrong`});
+        if(!foundUser.comparePassword(password)) return res.status(401).json({success: false, message: `Wrong password`});
         const accessToken = jwt.sign(
             {
                 userInfor: 
                     {
-                        username: foundUser.username,
+                        email: foundUser.email,
                         userID: foundUser.id
                     }
             },
@@ -53,7 +48,7 @@ const authController = async(req,res) => {
 
 const logoutController = async (req,res) => {
     try {
-        const authHeader = req.headers.Authorization || req.headers.authorization;
+        const authHeader = req.headers['Authorization'];
         if(!authHeader) return res.status(401).json({success: false, message: 'Error'});
 
         const accessToken = '';
