@@ -34,7 +34,7 @@ const authController = async(req,res) => {
                 userInfor: 
                     {
                         email: foundUser.email,
-                        userID: foundUser.id
+                        userId: foundUser.id
                     }
             },
             process.env.ACCESS_SECRET_TOKEN,
