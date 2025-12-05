@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -8,7 +7,7 @@ const app = express();
 
 //Router
 const userRouter = require('./route/user');
-// const postRouter = require('./route/post');
+const postRouter = require('./route/post');
 // const commentRouter = require('./route/comment');
 // const likeRouter = require('./route/like');
 // const shareRouter = require('./route/share');
@@ -36,7 +35,7 @@ app.use('/api/user', userRouter);
 //Verify middleware
 app.use(verifyToken);
 //Post Router
-// app.use('/post', postRouter);
+app.use('/api/post', postRouter);
 //Comment Router
 // app.use('/comment', commentRouter);
 //Like Router

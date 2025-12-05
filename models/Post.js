@@ -52,9 +52,8 @@ const postSchema = new mongoose.Schema({
 });
 
 // Update the updatedAt field before saving
-postSchema.pre('save', function (next) {
+postSchema.pre('save', function () {
     this.updatedAt = Date.now();
-    next();
 });
 
 // Virtual for reactions

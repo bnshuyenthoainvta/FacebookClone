@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const mongoose = require('mongoose');
 
 const createPost = async (req, res) => {
     try {
@@ -74,8 +75,8 @@ const deletePost = async (req, res) => {
 
             const ids = children.map(child => child._id);
 
-            for(const child of children) {
-                await deleteAllSharePost(child._id);
+            for(const id of ids) {
+                await deleteAllSharePost(id);
             }
 
             await Post.deleteMany({_id: {$in: ids}});
@@ -93,5 +94,19 @@ const deletePost = async (req, res) => {
         return res.status(500).json({success: false, message: 'Server internal error'});
     }
 }
+
+const getPost = async (req, res) => {
+    try {
+        const author = req.user.userId;
+        if(!author) return res.status(401).json({success: false, message: 'YYou must be logged in to get your posts'});
+
+        const result = await Post.find({author}).sort({ createdAt: -1 });
+
+        return res.status(200).json({success: true, message: "Posts retrieved successfully", count: result.length, result});
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({success: false, message: 'Server internal error'});
+    }
+}
  
-module.exports = {createPost, sharePost, deletePost};
+module.exports = {createPost, sharePost, deletePost, getPost};
