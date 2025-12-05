@@ -8,10 +8,10 @@ const app = express();
 
 //Router
 const userRouter = require('./route/user');
-const postRouter = require('./route/post');
-const commentRouter = require('./route/comment');
-const likeRouter = require('./route/like');
-const shareRouter = require('./route/share');
+// const postRouter = require('./route/post');
+// const commentRouter = require('./route/comment');
+// const likeRouter = require('./route/like');
+// const shareRouter = require('./route/share');
 
 //Special and important middleware
 app.use(express.json());
@@ -32,17 +32,17 @@ const databaseConnected = () => {
 databaseConnected();
 
 //User Router
-app.use('/user', userRouter);
+app.use('/api/user', userRouter);
 //Verify middleware
 app.use(verifyToken);
 //Post Router
-app.use('/post', postRouter);
+// app.use('/post', postRouter);
 //Comment Router
-app.use('/comment', commentRouter);
+// app.use('/comment', commentRouter);
 //Like Router
-app.use('/like', likeRouter);
+// app.use('/like', likeRouter);
 //Share Router
-app.use('/share', shareRouter);
+// app.use('/share', shareRouter);
 
 //Start app
 app.listen(PORT, ()=> {
