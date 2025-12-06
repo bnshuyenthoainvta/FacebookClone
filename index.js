@@ -8,9 +8,7 @@ const app = express();
 //Router
 const userRouter = require('./route/user');
 const postRouter = require('./route/post');
-// const commentRouter = require('./route/comment');
-// const likeRouter = require('./route/like');
-// const shareRouter = require('./route/share');
+const commentRouter = require('./route/comment');
 
 //Special and important middleware
 app.use(express.json());
@@ -31,17 +29,14 @@ const databaseConnected = () => {
 databaseConnected();
 
 //User Router
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 //Verify middleware
 app.use(verifyToken);
 //Post Router
-app.use('/api/post', postRouter);
+app.use('/api/posts', postRouter);
 //Comment Router
-// app.use('/comment', commentRouter);
-//Like Router
-// app.use('/like', likeRouter);
-//Share Router
-// app.use('/share', shareRouter);
+app.use('/api/posts', commentRouter);
+
 
 //Start app
 app.listen(PORT, ()=> {
