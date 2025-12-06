@@ -4,10 +4,10 @@ const postController = require('../controllers/postController');
 
 router.get('/', postController.getPost);
 
-router.post('/create', postController.createPost);
+router.post('/', postController.createPost);
 
-router.post('/share/:id', postController.sharePost);
+router.post('/:id/share', postController.sharePost);
 
-router.delete('/delete/:id', postController.deletePost);
+router.delete('/:id', postController.deletePost);
 
 module.exports = router;

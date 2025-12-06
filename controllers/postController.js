@@ -21,7 +21,7 @@ const sharePost = async (req, res) => {
     try {
         const author = req.user.userId;
         const content = req.body.content;
-        const originalPostId = req.params.id;
+        const originalPostId = req.params.postId;
 
         if(!originalPostId) return res.status(400).json({success: false, message: 'Original post ID is required'});
         if(!content) return res.status(400).json({success: false, message: 'Share content is required'});
@@ -49,7 +49,7 @@ const sharePost = async (req, res) => {
 const deletePost = async (req, res) => {
     try {
         const author = req.user.userId;
-        const postId = req.params.id;
+        const postId = req.params.postId;
 
         if(!postId) return res.status(400).json({success: false, message: 'Post ID is required'});
         if (!mongoose.Types.ObjectId.isValid(postId)) return res.status(400).json({ success: false, message: 'Invalid Post ID' });

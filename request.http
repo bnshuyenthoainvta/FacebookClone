@@ -1,16 +1,16 @@
 //Đăng kí tài khoản
-POST http://localhost:3500/api/user/register
+POST http://localhost:3500/api/users/register
 Content-Type: application/json
 
 {
-    "name": "Tuấn Anh 2",
-    "email": "hoangtuananh2@gmail.com",
+    "name": "Tuấn Anh ",
+    "email": "hoangtuananh@gmail.com",
     "password": "hoangtuananh"
 }
 
 ###
 //Đăng nhập tài khoản
-POST http://localhost:3500/api/user/auth
+POST http://localhost:3500/api/users/auth
 Content-Type: application/json
 
 {
@@ -18,6 +18,109 @@ Content-Type: application/json
     "password": "hoangtuananh"
 }
 //"userId": "6932e032b395107bb0f13564"
+
+
+
+
+
+
+###
+//Lấy tất cả post
+GET http://localhost:3500/api/posts/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+###
+//Tạo post
+POST http://localhost:3500/api/posts/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+Content-Type: application/json
+
+{
+    "content": "Post thứ hai"
+}
+
+###
+//Chia sẻ post POST http://localhost:3500/api/posts/:postId/share
+POST http://localhost:3500/api/posts/6932f6412d25a464cf7027f0/share
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+{
+    "content": "Chia sẻ post đầu tiên lần 2"
+}
+
+###
+//Xóa post DELETE http://localhost:3500/api/posts/:postId
+DELETE http://localhost:3500/api/posts/69343df02b53905790552b7f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+
+
+
+
+
+
+###
+//Tạo comment POST http://localhost:3500/api/posts/:postId/comments/
+POST http://localhost:3500/api/posts/:postId/comments/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+{
+    "content": "Bình luận đầu tiên"
+}
+
+###
+//Cập nhập comment PUT http://localhost:3500/api/posts/:postId/comments/:commentId
+PUT http://localhost:3500/api/posts/:postId/comments/:commentId
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+{
+    "content": "Bình luận đầu tiên"
+}
+
+###
+//Phản hồi comment POST http://localhost:3500/api/posts/:postId/comments/:commentId/replies
+POST http://localhost:3500/api/posts/:postId/comments/:commentId/replies
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+{
+    "content": "Bình luận vào bình luận đầu tiên"
+}
+
+###
+//Xóa comment DELETE http://localhost:3500/api/posts/:postId/comments/:commentId/
+DELETE http://localhost:3500/api/posts/:postId/comments/:commentId/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NDk0NjM0OCwiZXhwIjoxNzY1MDMyNzQ4fQ.m8MfH-MMt55uWxXQM4uug4sZWhW51YDxANJE2Oef1Bw
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
