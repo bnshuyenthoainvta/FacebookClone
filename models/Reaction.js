@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const reactionSchema = new mongoose.Schema({
-    user: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
@@ -23,7 +23,7 @@ const reactionSchema = new mongoose.Schema({
 });
 
 // Indexes for performance
-reactionSchema.index({ user: 1, post: 1 }, { unique: true }); // One reaction per user per post
+reactionSchema.index({ author: 1, post: 1 }, { unique: true }); // One reaction per user per post
 reactionSchema.index({ post: 1, type: 1 }); // Aggregate reactions by type
 reactionSchema.index({ post: 1, createdAt: -1 }); // Latest reactions
 

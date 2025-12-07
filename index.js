@@ -9,6 +9,7 @@ const app = express();
 const userRouter = require('./route/user');
 const postRouter = require('./route/post');
 const commentRouter = require('./route/comment');
+const reactionRouter = require('./route/reaction');
 
 //Special and important middleware
 app.use(express.json());
@@ -30,12 +31,16 @@ databaseConnected();
 
 //User Router
 app.use('/api/users', userRouter);
+
 //Verify middleware
 app.use(verifyToken);
+
 //Post Router
 app.use('/api/posts', postRouter);
 //Comment Router
 app.use('/api/comments', commentRouter);
+//Reaction Router
+app.use('/api/reactions', reactionRouter);
 
 
 //Start app

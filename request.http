@@ -1,3 +1,4 @@
+                                            //THAO TÁC VỚI USER
 //Đăng kí tài khoản
 POST http://localhost:3500/api/users/register
 Content-Type: application/json
@@ -23,7 +24,7 @@ Content-Type: application/json
 
 
 
-
+                                            //THAO TÁC VỚI POST
 ###
 //Lấy tất cả post
 GET http://localhost:3500/api/posts/
@@ -58,13 +59,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZ
 
 
 
-
+                                            //THAO TÁC VỚI COMMENT
 ###
 //Lấy tất cả comment trong post GET http://localhost:3500/api/comments/:postId
 GET http://localhost:3500/api/comments/6934e52c625c93130006fcf4
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
-
 
 ###
 //Tạo comment POST http://localhost:3500/api/comments/:postId
@@ -78,22 +78,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZ
 
 ###
 //Cập nhập comment PUT http://localhost:3500/api/comments/:commentId
-PUT http://localhost:3500/api/comments/:commentId
+PUT http://localhost:3500/api/comments/6934ebcbe5110d6986b19cfa
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
 
 {
-    "content": "Bình luận đầu tiên"
+    "content": "Bình luận thứ hai sau khi sửa"
 }
 
 ###
 //Phản hồi comment POST http://localhost:3500/api/comments/:commentId/replies
-POST http://localhost:3500/api/comments/:commentId/replies
+POST http://localhost:3500/api/comments/6934ebcbe5110d6986b19cfa/replies
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
 
 {
-    "content": "Bình luận vào bình luận đầu tiên lần thứ hai"
+    "content": "Replies bình luận thứ hai lần 2"
 }
 
 ###
@@ -107,11 +107,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZ
 
 
 
+                                            //THAO TÁC VỚI REACTION
+###
+//Tương tác với post POST http://localhost:3500/api/reactions/:postId
+POST http://localhost:3500/api/reactions/6934e52c625c93130006fcf4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
 
+{
+    "type": "haha"
+}
 
+###
+//Xóa tương tác với post DELETE http://localhost:3500/api/reactions/:postId
+DELETE http://localhost:3500/api/reactions/6934e52c625c93130006fcf4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
 
-
-
+###
+//Lấy tất cả tương tác của post POST http://localhost:3500/api/reactions/:postId
+GET http://localhost:3500/api/reactions/6934e52c625c93130006fcf4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3IiOnsiZW1haWwiOiJob2FuZ3R1YW5hbmhAZ21haWwuY29tIiwidXNlcklkIjoiNjkzMmUwMzJiMzk1MTA3YmIwZjEzNTY0In0sImlhdCI6MTc2NTA3MzczMywiZXhwIjoxNzY1OTM3NzMzfQ.uk1bUWN1KANLtpdDYZ8wH8187k3QhLaEyDoAnrCVTX8
 
 
 
