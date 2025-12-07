@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const registerController = async (req,res) => {
@@ -50,7 +49,7 @@ const authController = async(req,res) => {
 const logoutController = async (req,res) => {
     try {
         const authHeader = req.headers['authorization'];
-        if(!authHeader) return res.status(401).json({success: false, message: 'Error'});
+        if(!authHeader) return res.status(401).json({success: false, message: 'Authorization header required'});
 
         const accessToken = '';
         return res.status(200).json({accessToken});
