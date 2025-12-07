@@ -38,7 +38,7 @@ const authController = async(req,res) => {
                     }
             },
             process.env.ACCESS_SECRET_TOKEN,
-            {expiresIn: '1d'}
+            {expiresIn: '10d'}
         );
         return res.status(200).json({accessToken, userId: foundUser.id});
     } catch (e) {

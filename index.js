@@ -35,7 +35,7 @@ app.use(verifyToken);
 //Post Router
 app.use('/api/posts', postRouter);
 //Comment Router
-app.use('/api/posts', commentRouter);
+app.use('/api/comments', commentRouter);
 
 
 //Start app

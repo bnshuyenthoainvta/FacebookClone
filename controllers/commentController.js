@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const createComment = async (req, res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.params.postId;
         const author = req.user.userId;
         const content = req.body.content;
 
@@ -33,20 +33,20 @@ const createComment = async (req, res) => {
 
 const repliesComment = async (req, res) => {
     try {
-        const {postId, commentId} = req.params;
+        const commentId = req.params.commentId;
         const author = req.user.userId;
         const content = req.body.content;
 
-        if(!postId || !commentId) return res.status(400).json({success: false, message: 'Post ID and Comment ID is required'});
+        if(!commentId) return res.status(400).json({success: false, message: 'Comment ID is required'});
         if(!author) return res.status(401).json({success: false, message: 'You must be logged in'});
         if(!content) return res.status(400).json({success: false, message: 'Content is required'});
 
-        if(!mongoose.Types.ObjectId.isValid(postId) || !mongoose.Types.ObjectId.isValid(commentId)) return res.status(400).json({success: false, message: 'Invalid Post ID and Comment ID'});
+        if(!mongoose.Types.ObjectId.isValid(commentId)) return res.status(400).json({success: false, message: 'Invalid Comment ID'});
 
-        const foundComment = await Comment.findOne({post: postId, _id: commentId});
+        const foundComment = await Comment.findById(commentId);
         if(!foundComment) return res.status(404).json({success: false, message: 'Comment not found'});
 
-
+        const postId = foundComment.post;
         const result = await Comment.create({post: postId, author, content, parentComment: commentId});
 
         await Comment.findByIdAndUpdate(
@@ -70,7 +70,7 @@ const repliesComment = async (req, res) => {
 
 const updateComment = async (req, res) => {
     try {
-        const commentId = req.params.id;
+        const commentId = req.params.commentId;
         const author = req.user.userId;
         const content = req.body.content;
 
@@ -100,7 +100,7 @@ const updateComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
     try {
-        const commentId = req.params.id;
+        const commentId = req.params.commentId;
         const author = req.user.userId;
 
         if(!commentId) return res.status(400).json({success: false, message: 'Comment ID is required'});
@@ -146,4 +146,27 @@ const deleteComment = async (req, res) => {
     }
 }
 
-module.exports = { createComment, repliesComment, updateComment, deleteComment };
+const getAllCommentOfPost = async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const author = req.user.userId;
+
+        if(!postId) return res.status(400).json({success: false, message: 'Post ID is required'});
+        if(!author) return res.status(401).json({success: false, message: 'You must be logged in'});
+
+        if(!mongoose.Types.ObjectId.isValid(postId)) return res.status(400).json({success: false, message: 'Invalid Post ID'});
+
+        const foundPost = await Post.findById(postId);
+        if(!foundPost) return res.status(404).json({success: false, message: 'Post not found'});
+        if(foundPost.author.toString() !== author) return res.status(403).json({success: false, message: 'You can not get all comment of this Post'});
+
+        const result = await Comment.find({post: postId});
+
+        return res.status(200).json({success: true, message: 'Get all comment successfully', commentCount: foundPost.commentCount, result});
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({success: false, message: 'Server internal error'});
+    }
+}
+
+module.exports = { createComment, repliesComment, updateComment, deleteComment, getAllCommentOfPost };

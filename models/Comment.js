@@ -38,9 +38,8 @@ const commentSchema = new mongoose.Schema({
 });
 
 // Update the updatedAt field before saving
-commentSchema.pre('save', function (next) {
+commentSchema.pre('save', function () {
     this.updatedAt = Date.now();
-    next();
 });
 
 // Virtual for replies

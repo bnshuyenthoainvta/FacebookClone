@@ -6,8 +6,8 @@ router.get('/', postController.getPost);
 
 router.post('/', postController.createPost);
 
-router.post('/:id/share', postController.sharePost);
+router.post('/:postId/share', postController.sharePost);
 
-router.delete('/:id', postController.deletePost);
+router.delete('/:postId', postController.deletePost);
 
 module.exports = router;
